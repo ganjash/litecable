@@ -15,7 +15,6 @@ module LiteCable
   require "lite_cable/channel"
   require "lite_cable/coders"
   require "lite_cable/config"
-  require "lite_cable/anycable"
 
   class << self
     def config
