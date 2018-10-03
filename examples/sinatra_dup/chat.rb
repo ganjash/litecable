@@ -9,8 +9,8 @@ module Chats
 
     def connect
       @user = cookies["user"]
-      @sid = '1234'
-      # @sid = request.params["sid"]
+      # @sid = '1234'
+      @sid = request.params["sid"]
       # reject_unauthorized_connection unless @user
       $stdout.puts "#{@user} connected"
     end
@@ -28,12 +28,12 @@ module Chats
       stream_from "chat_1"
     end
 
-    def speak(data)
-      LiteCable.broadcast "chat_1", user: user, message: data["message"], sid: sid
-    end
-
-    private
-
+    # def speak(data)
+    #   LiteCable.broadcast "chat_1", user: user, message: data["message"], sid: sid
+    # end
+    # 
+    # private
+    # 
     #def chat_id
     #  params.fetch("id")
     #end

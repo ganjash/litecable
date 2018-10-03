@@ -12,24 +12,19 @@ class App < Sinatra::Application # :nodoc:
   set :session_secret, 'my_secrets'
 
   # get '/' do
-  #   if session[:user]
-  #     slim :index
-  #   else
-  #     slim :login
-  #   end
+  #   binding.pry
+  #   puts 'in root'
   # end
 
   #  get '/sign_in' do
   #    slim :login
   #  end
 
-  #  post '/message' do
-    
-  #    if params['user']
-  #      session[:user] = params['user']
-  #      cookies["user"] = params['user']
-  #    end
-  #  end
+    post '/message' do
+      message = params['message']
+      LiteCable.broadcast "chat_1", user: 'BOT', message: message, sid: '1234'
+      'OK'
+    end
   # post '/rooms' do
   #   if params['id']
   #     redirect "/rooms/#{params['id']}"
