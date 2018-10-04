@@ -25,6 +25,19 @@ class App < Sinatra::Application # :nodoc:
       LiteCable.broadcast "chat_1", user: 'BOT', message: message, sid: '1234'
       'OK'
     end
+
+    get '/test' do
+      binding.pry
+      'OK'
+    end
+
+    get '/subscribers' do
+      puts '*******'
+      p Chats::Connection.class_variable_get(:@@connections_count)
+      puts '*******'
+      'OK'
+    end
+
   # post '/rooms' do
   #   if params['id']
   #     redirect "/rooms/#{params['id']}"

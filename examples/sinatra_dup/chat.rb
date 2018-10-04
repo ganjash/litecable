@@ -6,6 +6,8 @@ require "litecable"
 module Chats
   class Connection < LiteCable::Connection::Base # :nodoc:
     identified_by :user, :sid
+    @@connections_count = 0
+    @@lock_mech = Mutex.new
 
     def connect
       @user = cookies["user"]
@@ -13,9 +15,11 @@ module Chats
       @sid = request.params["sid"]
       # reject_unauthorized_connection unless @user
       $stdout.puts "#{@user} connected"
+      @@lock_mech.synchronize { @@connections_count += 1 }
     end
 
     def disconnect
+      @@lock_mech.synchronize { @@connections_count += 1 }
       $stdout.puts "#{@user} disconnected"
     end
   end
