@@ -8,7 +8,7 @@ var actioncable = require('actioncable-nodejs')
 socketMethod = () => {
     var socketId = Date.now();
     var roomId = "201";
-    var wsSocket = "ws://localhost:9292/cable?sid="+socketId;
+    var wsSocket = "ws://localhost:9293/cable?sid="+socketId;
     
     let cable_url = wsSocket
     let cable = new actioncable(cable_url, {

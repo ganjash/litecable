@@ -3,7 +3,7 @@
 require "litecable"
 
 # Sample chat application
-module Chats
+module Chat
   class Connection < LiteCable::Connection::Base # :nodoc:
     identified_by :sid
     @@connections_count = 0

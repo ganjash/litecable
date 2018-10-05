@@ -22,7 +22,7 @@ else
   require "lite_cable/server"
 
   app.map '/cable' do
-    use LiteCable::Server::Middleware, connection_class: Chats::Connection
+    use LiteCable::Server::Middleware, connection_class: Chat::Connection
     run proc { |_| [200, { 'Content-Type' => 'text/plain' }, ['OK']] }
   end
 end
