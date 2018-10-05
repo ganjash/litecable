@@ -11,10 +11,9 @@ class App < Sinatra::Application # :nodoc:
   enable :sessions
   set :session_secret, 'my_secrets'
 
-  # get '/' do
-  #   binding.pry
-  #   puts 'in root'
-  # end
+  get '/' do
+    'OK'
+  end
 
   #  get '/sign_in' do
   #    slim :login
@@ -22,7 +21,7 @@ class App < Sinatra::Application # :nodoc:
 
     post '/message' do
       message = params['message']
-      LiteCable.broadcast "chat_1", user: 'BOT', message: message, sid: '1234'
+      LiteCable.broadcast "chat_1", user: 'BOT', message: message
       'OK'
     end
 

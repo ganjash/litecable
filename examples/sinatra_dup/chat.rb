@@ -5,12 +5,12 @@ require "litecable"
 # Sample chat application
 module Chats
   class Connection < LiteCable::Connection::Base # :nodoc:
-    identified_by :user, :sid
+    identified_by :sid
     @@connections_count = 0
     @@lock_mech = Mutex.new
 
     def connect
-      @user = cookies["user"]
+      # @user = cookies["user"]
       # @sid = '1234'
       @sid = request.params["sid"]
       # reject_unauthorized_connection unless @user

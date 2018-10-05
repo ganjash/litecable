@@ -3,13 +3,13 @@
 // var user = "sri"+socketId;
 
 // client.connect("ws://localhost:9292/cable");
+var actioncable = require('actioncable-nodejs')
 
-for(var i=0; i < 1000; i++) {
+socketMethod = () => {
     var socketId = Date.now();
     var roomId = "201";
     var wsSocket = "ws://localhost:9292/cable?sid="+socketId;
     
-    var actioncable = require('actioncable-nodejs')
     let cable_url = wsSocket
     let cable = new actioncable(cable_url, {
         origin: 'http://localhost:9292'
@@ -28,5 +28,10 @@ for(var i=0; i < 1000; i++) {
         console.log("Received", data);
         }
      });
-    
+
+}
+for(var i=1; i <= 1000; i++) {
+    setTimeout(() => {
+        socketMethod()
+    }, i*100)
 }
